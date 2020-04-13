@@ -76,10 +76,14 @@ export default {
             data: this.loginForm,
             method: 'post'
           }).then(res => {
-            // 将token村本地
-            console.log(res.data.data.token)
-
+            // 将token存本地
             window.localStorage.setItem('token', res.data.data.token)
+            this.$route.push('/home')
+          }).catch(() => {
+            this.$message({
+              type: 'warning',
+              message: '手机号或验证码错误'
+            })
           })
         }
       })
